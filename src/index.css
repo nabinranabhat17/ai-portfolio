@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  
+  --color-bg-dark: #070913;
+  --color-bg-card-dark: rgba(15, 23, 42, 0.4);
+  --color-border-dark: rgba(51, 65, 85, 0.35);
+  
+  --color-accent-teal: #14b8a6;
+  --color-accent-blue: #3b82f6;
+  --color-accent-indigo: #6366f1;
+}
+
+/* Base custom resets and setups */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply transition-colors duration-300 font-sans antialiased text-slate-800 dark:text-slate-200 bg-slate-50 dark:bg-bg-dark;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-slate-100 dark:bg-slate-900;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-slate-300 dark:bg-slate-800 rounded-full hover:bg-slate-400 dark:hover:bg-slate-700 transition-colors;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .glass {
+    backdrop-filter: blur(16px);
+    background-color: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  }
+
+  .dark .glass {
+    backdrop-filter: blur(16px);
+    background-color: rgba(15, 23, 42, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .text-glow-teal {
+    text-shadow: 0 0 12px rgba(20, 184, 166, 0.3);
+  }
+
+  .text-glow-blue {
+    text-shadow: 0 0 12px rgba(59, 130, 246, 0.3);
+  }
+  
+  .glow-card-teal:hover {
+    box-shadow: 0 10px 30px -10px rgba(20, 184, 166, 0.2);
+    border-color: rgba(20, 184, 166, 0.4);
+  }
+
+  .glow-card-blue:hover {
+    box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.4);
+  }
+
+  /* Notebook styling utilities */
+  .notebook-cell {
+    @apply border-l-2 border-slate-200 dark:border-slate-800/60 pl-4 md:pl-6 py-2 transition-colors duration-300;
+  }
+  .notebook-cell-active {
+    @apply border-l-2 border-teal-500/70 dark:border-accent-teal/70 pl-4 md:pl-6 py-2 transition-colors duration-300;
+  }
+
+  .cell-label {
+    @apply text-xs font-mono font-bold select-none w-14 shrink-0 text-slate-400 dark:text-slate-500 text-right pr-2 md:pr-3 pt-1;
+  }
+
+  .cell-input-code {
+    @apply font-mono text-sm leading-relaxed p-4 rounded-xl border bg-slate-100/70 dark:bg-slate-900/50 border-slate-200 dark:border-slate-800/80 text-slate-800 dark:text-slate-300 overflow-x-auto;
+  }
+
+  .terminal-window {
+    @apply font-mono text-xs p-4 rounded-xl border bg-slate-950 border-slate-800 text-slate-300 overflow-x-auto shadow-inner;
+  }
+}
+
+/* Custom animations keyframes */
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typewriter-cursor {
+  border-right: 2px solid currentColor;
+  animation: blink 0.75s step-end infinite;
+}
+
